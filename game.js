@@ -31,7 +31,10 @@ function preload() {
 }
 
 function create() {
-    this.physics.add.sprite(200,200,"dino").setOrigin(0);
+    this.physics.add.sprite(200,200,"dino").setOrigin(0,1)
+        .setcollideworldBounds(true)
+        .setBodySize(44,92);
+        .setGravityY(5000);
     this.ground = this.add.tileSprite(0,300,1000,30,"ground").setOrigin(0,1);
     this.clouds = this.add.group();
     this.clouds = this.clouds.addMultiple(
