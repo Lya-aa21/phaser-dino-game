@@ -27,24 +27,24 @@ function preload() {
     this.load.image("ground", "assets/ground.png");
     this.load.image("cloud", "assets/cloud.png");
     for(let i =1; i<7; i++){
-        this.load.image(`obstacle${i}`, `assets/cactuses_${i}.png`);
-    }
+        this.load.image(`obstacles${i}`, `assets/cactuses_${i}.png`)
+        
     
     
 }
 
 function create() {
-    this.player = this.physics.add.sprite(200,200,"dino").setOrigin(0,1)
-    .setCollideWorldBounds(true)
+    this.physics.add.sprite(200,200,"dino").setOrigin(0)
+    .setColliderWorldBounds(true)
     .setBodySize(44,92)
     .setGravityY(5000);
     this.ground = this.add.tileSprite(0,300,1000,30,"ground").setOrigin(0,1);
-
+    
     this.groundCollider= this.physics.add.staticSprite(0, 300, "ground").setOrigin(0,1);
     this.groundCollider.body.setSize(1000,30);
 
     this.physics.add.collider(this.player, this.groundCollider);
-
+    
     this.clouds = this.add.group();
     this.clouds = this.clouds.addMultiple(
         [this.add.image(200,100, "cloud"),
@@ -53,20 +53,16 @@ function create() {
         ]
     );
     this.gameSpeed =5;
-    this.obstacles = this.physics.add.group({
+    this.obstacles = this.physics.add.group()}
         allowGravity:false
-    });
+  }); 
 }
 
-function update() {
+function update() { 
 this.ground.tilePositionX +=this.gameSpeed;
 //as game progresses, every time update runs, ground moves by fixed unit to the left 
 const num= Math.floor(Math.random() *6) +1;
 this.obstacles.create(750,220, `obstacle${num}`).setOrigin(0);
-
-
+    
 }
-
-
-
-
+    
